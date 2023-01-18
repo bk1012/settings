@@ -108,6 +108,20 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# mac terminal 开启代理
-export http_proxy=http://127.0.0.1:8889
-export https_proxy=http://127.0.0.1:8889
+# 开启代理
+function proxy_on() {
+    export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+    export http_proxy="http://127.0.0.1:7890"
+    export https_proxy=$http_proxy
+    # export all_proxy=socks5://127.0.0.1:7890 # or this line
+    echo -e "\n"
+    echo -e "\033[32m已开启代理\033[0m" # 设置颜色
+}
+
+# 关闭代理
+function proxy_off(){
+    unset http_proxy
+    unset https_proxy
+    unset all_proxy
+    echo -e "已关闭代理"
+}
